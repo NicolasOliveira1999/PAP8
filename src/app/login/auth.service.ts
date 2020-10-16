@@ -12,16 +12,10 @@ export class AuthService {
 
   constructor(private router: Router){}
 
-  ngOnInit(){
-    if(this.isAuthenticated){
-      this.showMenuEmitter.emit(true);
-    }
-  }
-
   logar(user: User){
     if(user.matricula == "123123" && user.password == "123456"){
       this.isAuthenticated = true;
-      this.showMenuEmitter.emit(true);
+      this.emitteShowMenuEmitter();
       localStorage.setItem("logedIn", "true");
       this.router.navigate(["/"]);
     } else {
@@ -32,5 +26,11 @@ export class AuthService {
 
   isUserLoged():boolean{
     return this.isAuthenticated; 
+  }
+
+  emitteShowMenuEmitter(){
+    if(this.isAuthenticated){
+      this.showMenuEmitter.emit(true);
+    }
   }
 }
