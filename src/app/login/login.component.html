@@ -1,0 +1,26 @@
+<div class="container d-flex justify-content-center">
+    <div class="form-login col-6">
+        <div class="d-flex justify-content-center">
+            <img src="./../../assets/img/iot_login.png">
+        </div>
+        <div>
+            <mat-form-field appearance="legacy" class="input">
+                <mat-label>Matricula</mat-label>
+                <input matInput placeholder="Ex.: 123456" [(ngModel)]="user.matricula">
+            </mat-form-field>
+            <mat-form-field appearance="legacy" class="input">
+                <mat-label>Senha</mat-label>
+                <input matInput placeholder="******" type="password" [(ngModel)]="user.password">
+            </mat-form-field>
+        </div>
+        <div class="login-options">
+            <button mat-raised-button (click)="logar()">
+                Login
+                <mat-icon>send</mat-icon>
+            </button>
+        </div>
+        <div class="login-options">
+            <a class="link">Esqueci minha senha</a>
+        </div>
+    </div>
+</div>

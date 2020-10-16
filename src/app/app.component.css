@@ -1,0 +1,18 @@
+.site-name-header{
+    /*font-family: "Arial Black", Gadget, sans-serif;*/
+    color: #F37D06;
+    text-align: center;
+}
+
+.site-name-header:hover,
+.logo-nav-header:hover{
+    cursor: pointer;
+}
+
+.menu-nav-header a{
+    margin-left: 5px;
+}
+
+header{
+    margin-bottom: 20px;
+}

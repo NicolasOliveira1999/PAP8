@@ -1,0 +1,25 @@
+.menu{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.menu-buttons{
+    display: flex;
+    justify-content: flex-end;
+    width: 90%;
+}
+.menu-buttons a{
+    margin-left: 5px;
+}
+.menu-buttons a:hover{
+    margin-left: 5px;
+    text-decoration: none;
+}
+.menu-logo{
+    width: 10%;
+    justify-content: space-around;
+}
+.menu-logo h1{
+    text-align: center;
+}

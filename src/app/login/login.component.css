@@ -1,0 +1,24 @@
+.form-login{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.form-login img{
+    width: 70%;
+}
+.input{
+    width: 100%;
+}
+.login-options{
+    display: flex;
+    justify-content: space-around;
+}
+.link{
+    margin-top: 5px;
+    text-align: center;
+}
+.link:hover{
+    text-decoration: underline;
+    color: #0066ff;
+    size: 1.1rem;
+    cursor: pointer;
+}
