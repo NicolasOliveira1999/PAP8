@@ -23,6 +23,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './login/auth.service';
 import { AuthGuard } from './guards/auth-guard';
 import { UsersComponent } from './users/users.component';
+import { ApagarComponent } from './apagar/apagar.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { UsersComponent } from './users/users.component';
     MenuComponent,
     HomeComponent,
     LoginComponent,
-    UsersComponent
+    UsersComponent,
+    ApagarComponent
   ],
   imports: [
     BrowserModule,
