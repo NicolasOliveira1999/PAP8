@@ -14,17 +14,10 @@ export class AppComponent {
 
   ngOnInit(){
     this.authService.showMenuEmitter.subscribe(
-      show => this.showMenu = show
-    );
-  }
-
-  teste(){
-    console.log(this.showMenu);
-    this.authService.showMenuEmitter.subscribe(
       show => {
-        debugger;
-        console.log(show)
-      }
+        this.showMenu = show
+      } 
     );
+    this.authService.emitteShowMenuEmitter();
   }
 }
