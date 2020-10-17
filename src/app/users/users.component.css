@@ -1,0 +1,13 @@
+table{
+    width: 100%;
+}
+.search{
+    width: 95%;
+}
+.botoes{
+    padding: 0;
+}
+.botoes button{
+    width: 100%;
+    margin-bottom: 15px;
+}

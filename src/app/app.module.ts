@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
 
 //Components
 import { AppComponent } from './app.component';
@@ -45,6 +46,7 @@ import { ApagarComponent } from './apagar/apagar.component';
     MatGridListModule,
     MatFormFieldModule,
     MatInputModule,
+    MatTableModule,
     FormsModule,
     ReactiveFormsModule
   ],
