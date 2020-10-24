@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {SelectionModel} from '@angular/cdk/collections';
+import { SelectionModel } from '@angular/cdk/collections';
 import {MatTableDataSource} from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
 
+import { UserComponent } from './_modal/user.component';
 import { User } from './user.model';
 
 const ELEMENT_DATA: User[] = [
@@ -20,11 +22,17 @@ const ELEMENT_DATA: User[] = [
 })
 export class UsersComponent implements OnInit {
   value: string;
-  constructor(){}
-  ngOnInit(){}
-  displayedColumns: string[] = ['id', 'ra', 'name'];
+  displayedColumns: string[] = ['select', 'id', 'ra', 'name'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   selection = new SelectionModel<User>(true, []);
+
+  constructor(private matDialog: MatDialog){}
+  ngOnInit(){}
+  
+  //Aplica filtro
+  applyFilter(value: string) {
+    this.dataSource.filter = value.trim().toLowerCase();
+  }
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -40,15 +48,48 @@ export class UsersComponent implements OnInit {
         this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
-  applyFilter(value: string) {
-    this.dataSource.filter = value.trim().toLowerCase();
-  }
   /** The label for the checkbox on the passed row */
-  // checkboxLabel(row?: User): string {
-  //   if (!row) {
-  //     return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
-  //   }
-  //   return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
-  // }
+  checkboxLabel(row?: User): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+    }
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
+  }
 
+  openModalEditUser(){
+    const selected = this.selection.selected;
+    if(selected.length < 1){
+      //Precisa de pelo menos um usuario selecionado
+      alert("Selecione um usuário para entrar na edição.");
+      return null;
+    }else if(selected.length > 1){
+      //Só pode editar 1 item por vez
+      alert("Não é possível editar mais de um usuário por vez");
+      return null;
+    }
+    //Entra no modal de edição
+    const userModal = this.matDialog.open(UserComponent, {
+      width: '700px',
+      data: {title: "New User", user: selected[0]}
+    });
+    userModal.afterClosed().subscribe(
+      data => {
+        this.selection.clear();
+      }
+    );
+  } 
+
+  //FUNÇÃO PARA ABRIR MODAL
+  openModalNewUser(){
+    const userModal = this.matDialog.open(UserComponent, {
+      width: '700px',
+      data: {title: "New User"}
+    });
+    userModal.afterClosed().subscribe(
+      data => {
+        this.dataSource.data.push(data.user);
+        this.dataSource._updateChangeSubscription();
+      }
+    );
+  }
 }

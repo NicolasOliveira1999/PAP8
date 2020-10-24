@@ -1,0 +1,10 @@
+.principal-content{
+    padding: 20px;
+}
+.input{
+    width: 100%;
+}
+.close:hover{
+    cursor: pointer;
+    color: red;
+}
