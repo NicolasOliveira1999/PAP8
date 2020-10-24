@@ -11,7 +11,25 @@
           </button>
 
           <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  
+
+              <!-- Checkbox Column -->
+              <ng-container matColumnDef="select">
+                <th mat-header-cell *matHeaderCellDef>
+                  <mat-checkbox (change)="$event ? masterToggle() : null"
+                                [checked]="selection.hasValue() && isAllSelected()"
+                                [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                [aria-label]="checkboxLabel()">
+                  </mat-checkbox>
+                </th>
+                <td mat-cell *matCellDef="let row">
+                  <mat-checkbox (click)="$event.stopPropagation()"
+                                (change)="$event ? selection.toggle(row) : null"
+                                [checked]="selection.isSelected(row)"
+                                [aria-label]="checkboxLabel(row)">
+                  </mat-checkbox>
+                </td>
+              </ng-container>
+
               <!-- Id Column -->
               <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef> Id </th>
@@ -40,8 +58,8 @@
             </table>
         </div>
         <div class="col-2 botoes">
-            <button mat-raised-button>New User</button>
-            <button mat-raised-button>Edit User</button>
+            <button mat-raised-button (click)="openModalNewUser()">New User</button>
+            <button mat-raised-button (click)="openModalEditUser()">Edit User</button>
             <button mat-raised-button>Delete Select</button>
         </div>
     </div>
