@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 content">
+
+            <mat-card class="col-3 card" *ngFor="let lamp of lampadas">
+                <mat-card-header style="margin-bottom: 10px;">
+                  <mat-card-title>{{lamp.name}}</mat-card-title>
+                </mat-card-header>
+                <div class="image">
+                    <img mat-card-image
+                        *ngIf="lamp.status"
+                        src="./../../assets/img/apagada.png"
+                        alt="Lampada está acesa"
+                        class="lampada-img-apagada">
+                    <img mat-card-image
+                        *ngIf="!lamp.status"
+                        src="./../../assets/img/acesa.png"
+                        alt="Lampada está acesa"
+                        class="lampada-img-acesa">
+                </div>
+                <mat-card-content>
+                    <p>{{lamp.description}}</p>
+                </mat-card-content>
+                <mat-card-actions class="d-flex justify-content-around">
+                    <button mat-raised-button *ngIf="!lamp.status" (click)="turnOnOff($event)">Acender</button>
+                    <button mat-raised-button *ngIf="lamp.status" (click)="turnOnOff($event)">Apagar</button>
+                </mat-card-actions>
+            </mat-card>
+
+        </div>
+    </div>
+</div>

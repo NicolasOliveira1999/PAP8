@@ -1,0 +1,21 @@
+.content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.card{
+    margin: 5px;
+}
+.lampada-img-apagada{
+    width: 55%;
+    margin-top: 20px;
+}
+.lampada-img-acesa{
+    width: 50%;
+    margin-top: 20px;
+}
+.image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

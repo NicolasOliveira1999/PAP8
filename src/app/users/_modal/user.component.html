@@ -1,0 +1,15 @@
+<header class="d-flex justify-content-between">
+    <p class="h4">{{data.title}}</p>
+    <mat-icon aria-label="Close" class="close" (click)="close()">close</mat-icon>
+</header>
+<div class="container">
+    <div class="row principal-content">
+        <mat-form-field appearance="legacy" class="input">
+            <mat-label>Nome</mat-label>
+            <input matInput [(ngModel)]="user.name">
+        </mat-form-field>
+    </div>    
+</div>
+<div class="d-flex justify-content-end">
+    <button mat-raised-button color="primary" (click)="save()">Salvar</button>
+</div>
