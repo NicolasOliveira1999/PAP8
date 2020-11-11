@@ -1,5 +1,8 @@
 export class User{
-    id: number;
+    id_usuario: number;
+    nome: string;
     ra: string;
-    name: string;
+    senha: string;
+    situacao: string;
+    admin_acess: boolean;
 }

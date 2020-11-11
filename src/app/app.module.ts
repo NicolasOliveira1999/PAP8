@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 //Material
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -24,7 +25,6 @@ import { MenuComponent } from './menu/menu.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { UsersComponent } from './users/users.component';
-import { ApagarComponent } from './apagar/apagar.component';
 import { ModalComponent } from './util/modal/modal.component';
 import { UserComponent } from './users/_modal/user.component';
 import { LampadasComponent } from './lampadas/lampadas.component';
@@ -42,7 +42,6 @@ import { AuthGuard } from './guards/auth-guard';
     HomeComponent,
     LoginComponent,
     UsersComponent,
-    ApagarComponent,
     ModalComponent,
     UserComponent,
     LampadasComponent
@@ -64,7 +63,8 @@ import { AuthGuard } from './guards/auth-guard';
     FormsModule,
     ReactiveFormsModule,
     MatCardModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    HttpClientModule
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
