@@ -1,19 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
-import {MatTableDataSource} from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 
+import { UserService } from './../services/user.service';
 import { UserComponent } from './_modal/user.component';
 import { User } from './user.model';
-
-const ELEMENT_DATA: User[] = [
-  {id: 1, ra: '285590', name: "Nicolas"},
-  {id: 1, ra: '285590', name: "Saulo"},
-  {id: 1, ra: '285591', name: "Nicolas"},
-  {id: 3, ra: '285590', name: "Nicolas"},
-  {id: 1, ra: '285590', name: "Nicolas"},
-  {id: 1, ra: '285590', name: "Nicolas"}
-];
 
 @Component({
   selector: 'app-users',
@@ -23,10 +15,19 @@ const ELEMENT_DATA: User[] = [
 export class UsersComponent implements OnInit {
   value: string;
   displayedColumns: string[] = ['select', 'id', 'ra', 'name'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  dataSource;
   selection = new SelectionModel<User>(true, []);
 
-  constructor(private matDialog: MatDialog){}
+  constructor(
+    private matDialog: MatDialog,
+    private userService:UserService
+  ){
+    this.userService.getUser().subscribe(
+      (rs: User[]) => {
+        this.dataSource = new MatTableDataSource(rs);
+      }
+    )
+  }
   ngOnInit(){}
   
   //Aplica filtro
@@ -53,7 +54,7 @@ export class UsersComponent implements OnInit {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id_usuario + 1}`;
   }
 
   openModalEditUser(){
@@ -79,7 +80,6 @@ export class UsersComponent implements OnInit {
     );
   } 
 
-  //FUNÇÃO PARA ABRIR MODAL
   openModalNewUser(){
     const userModal = this.matDialog.open(UserComponent, {
       width: '700px',
@@ -87,8 +87,10 @@ export class UsersComponent implements OnInit {
     });
     userModal.afterClosed().subscribe(
       data => {
-        this.dataSource.data.push(data.user);
-        this.dataSource._updateChangeSubscription();
+        if(data.user){
+          this.dataSource.data.push(data.user);
+          this.dataSource._updateChangeSubscription();
+        }
       }
     );
   }

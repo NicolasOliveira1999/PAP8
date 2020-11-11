@@ -9,13 +9,14 @@ import { Lampada } from './_modal/lampada.modal';
 export class LampadasComponent implements OnInit {  
 
   lampadas: Lampada[] = [
-    {name: "Lampada 1", description: "Lampada sala", status: false},
-    {name: "Lampada 1", description: "Lampada sala", status: false},
-    {name: "Lampada 1", description: "Lampada sala", status: true},
-    {name: "Lampada 1", description: "Lampada sala", status: false},
-    {name: "Lampada 1", description: "Lampada sala", status: true},
-    {name: "Lampada 1", description: "Lampada sala", status: false}
+    {id: 1, name: "Lampada 1", description: "Lampada sala", status: false, pino: 1},
+    {id: 2, name: "Lampada 2", description: "Lampada sala", status: false, pino: 2},
+    {id: 3, name: "Lampada 3", description: "Lampada sala", status: true, pino: 3},
+    {id: 4, name: "Lampada 4", description: "Lampada sala", status: false, pino: 4}
   ]
+
+  addLampada = false;
+  newLamp = new Lampada();
 
   constructor(){
   }
@@ -24,6 +25,11 @@ export class LampadasComponent implements OnInit {
   }
 
   turnOnOff(event){
-    //debugger;
+    let index = this.lampadas.indexOf(event);
+    this.lampadas[index].status = !this.lampadas[index].status;
+  }
+
+  adicionarLampada(){
+    this.addLampada = !this.addLampada;
   }
 }

@@ -1,7 +1,29 @@
 <div class="container">
+    <div style="display: flex; justify-content: flex-end;">
+        <button mat-raised-button (click)="adicionarLampada()">NEW</button>
+    </div>
+    <mat-card *ngIf="addLampada" class="newLamp">
+        <mat-form-field appearance="legacy" class="input">
+            <mat-label>Nome</mat-label>
+            <input matInput [(ngModel)]="newLamp.name">
+        </mat-form-field>
+        <mat-form-field appearance="legacy" class="input">
+            <mat-label>Descrição</mat-label>
+            <input matInput [(ngModel)]="newLamp.description">
+        </mat-form-field>
+        <mat-form-field appearance="legacy" class="input">
+            <mat-label>Pino</mat-label>
+            <input matInput [(ngModel)]="newLamp.pino">
+        </mat-form-field>
+
+        <mat-card-actions class="d-flex justify-content-around">
+            <button mat-raised-button *ngIf="lamp.status" (click)="cancelar(lamp)">Acender</button>
+            <button mat-raised-button *ngIf="!lamp.status" (click)="salvar(lamp)">Apagar</button>
+            <button mat-raised-button>Editar</button>
+        </mat-card-actions>
+    </mat-card>
     <div class="row">
         <div class="col-12 content">
-
             <mat-card class="col-3 card" *ngFor="let lamp of lampadas">
                 <mat-card-header style="margin-bottom: 10px;">
                   <mat-card-title>{{lamp.name}}</mat-card-title>
@@ -22,8 +44,9 @@
                     <p>{{lamp.description}}</p>
                 </mat-card-content>
                 <mat-card-actions class="d-flex justify-content-around">
-                    <button mat-raised-button *ngIf="!lamp.status" (click)="turnOnOff($event)">Acender</button>
-                    <button mat-raised-button *ngIf="lamp.status" (click)="turnOnOff($event)">Apagar</button>
+                    <button mat-raised-button *ngIf="lamp.status" (click)="turnOnOff(lamp)">Acender</button>
+                    <button mat-raised-button *ngIf="!lamp.status" (click)="turnOnOff(lamp)">Apagar</button>
+                    <button mat-raised-button>Editar</button>
                 </mat-card-actions>
             </mat-card>
 
