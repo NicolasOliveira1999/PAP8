@@ -32,4 +32,33 @@ export class LampadasComponent implements OnInit {
   adicionarLampada(){
     this.addLampada = !this.addLampada;
   }
+
+  cancelar(){
+    this.addLampada = false;
+    this.newLamp = new Lampada();
+  }
+
+  salvar(){
+    this.addLampada = false;
+    if(!this.newLamp.id){
+      this.newLamp.id = this.lampadas[this.lampadas.length-1].id+1;
+      this.lampadas.push(this.newLamp);
+    } else {
+      let index = this.lampadas.findIndex(lamp => {return lamp.id == this.newLamp.id});
+      this.lampadas[index] = this.newLamp;
+    }
+    
+    console.log(this.lampadas);
+    this.newLamp = new Lampada();
+  }
+
+  editar(lamp: Lampada){
+    this.addLampada = true;
+    this.newLamp = Object.assign({}, lamp);
+  }
+
+  delete(lamp: Lampada){
+    this.lampadas.splice(this.lampadas.findIndex(data => {return data.id == lamp.id}), 1);
+    console.log(this.lampadas);
+  }
 }

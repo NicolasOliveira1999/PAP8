@@ -2,7 +2,7 @@
     <div style="display: flex; justify-content: flex-end;">
         <button mat-raised-button (click)="adicionarLampada()">NEW</button>
     </div>
-    <mat-card *ngIf="addLampada" class="newLamp">
+    <mat-card *ngIf="addLampada" class="odeioOPAP">
         <mat-form-field appearance="legacy" class="input">
             <mat-label>Nome</mat-label>
             <input matInput [(ngModel)]="newLamp.name">
@@ -17,9 +17,8 @@
         </mat-form-field>
 
         <mat-card-actions class="d-flex justify-content-around">
-            <button mat-raised-button *ngIf="lamp.status" (click)="cancelar(lamp)">Acender</button>
-            <button mat-raised-button *ngIf="!lamp.status" (click)="salvar(lamp)">Apagar</button>
-            <button mat-raised-button>Editar</button>
+            <button mat-raised-button (click)="cancelar()">Cancelar</button>
+            <button mat-raised-button (click)="salvar()">Salvar</button>
         </mat-card-actions>
     </mat-card>
     <div class="row">
@@ -46,7 +45,8 @@
                 <mat-card-actions class="d-flex justify-content-around">
                     <button mat-raised-button *ngIf="lamp.status" (click)="turnOnOff(lamp)">Acender</button>
                     <button mat-raised-button *ngIf="!lamp.status" (click)="turnOnOff(lamp)">Apagar</button>
-                    <button mat-raised-button>Editar</button>
+                    <button mat-raised-button (click)="editar(lamp)">Editar</button>
+                    <button mat-raised-button (click)="delete(lamp)">Excluir</button>
                 </mat-card-actions>
             </mat-card>
 

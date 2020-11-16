@@ -22,7 +22,6 @@ import { MatNativeDateModule } from '@angular/material/core';
 //Components
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
-import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { UsersComponent } from './users/users.component';
 import { ModalComponent } from './util/modal/modal.component';
@@ -39,7 +38,6 @@ import { AuthGuard } from './guards/auth-guard';
   declarations: [
     AppComponent,
     MenuComponent,
-    HomeComponent,
     LoginComponent,
     UsersComponent,
     ModalComponent,

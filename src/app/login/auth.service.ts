@@ -17,7 +17,7 @@ export class AuthService {
       this.isAuthenticated = true;
       this.emitteShowMenuEmitter();
       localStorage.setItem("logedIn", "true");
-      this.router.navigate(["/"]);
+      this.router.navigate(["/lampadas"]);
     } else {
       this.isAuthenticated = false;
       this.showMenuEmitter.emit(false);
